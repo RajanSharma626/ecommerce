@@ -71,7 +71,6 @@ $query = mysqli_query($conn, $sql);
 <head>
 
     <?php include('includes/head.php') ?>
-    <meta charset="utf-8">
     <title>Categories | Tift Point</title>
 
 </head>

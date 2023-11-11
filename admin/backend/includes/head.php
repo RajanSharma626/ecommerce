@@ -1,4 +1,4 @@
-<?php 
+<?php
 // if(isset($_SESSION["Admin_login"]) && $_SESSION["Admin_login"] == true)
 // {
 
@@ -8,7 +8,7 @@
 //     die();
 // }
 ?>
-
+        <meta charset="utf-8">
 <!-- App favicon -->
 <link rel="shortcut icon" href="https://themesbrand.com/toner/html/assets/images/favicon.ico">
 

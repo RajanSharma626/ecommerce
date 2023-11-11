@@ -584,6 +584,33 @@ function scrollToBottom(a) {
     }, 100)
 }
 
+function addImageInput() {
+    // Create a new file input element
+    var newInput = document.createElement('input');
+    newInput.className = 'form-control';
+    newInput.classList.add('mb-2');
+    newInput.type = 'file';
+    newInput.name = 'img[]';
+    newInput.required = true;
+
+    // Create a remove button
+    var removeButton = document.createElement('button');
+    removeButton.innerHTML = 'Remove';
+    removeButton.className = 'btn btn-danger';
+    removeButton.classList.add('mb-3');
+    removeButton.addEventListener('click', function () {
+        // Remove the input and the button when the remove button is clicked
+        var container = document.getElementById('imageInputsContainer');
+        container.removeChild(newInput);
+        container.removeChild(removeButton);
+    });
+
+    // Append the new input and the remove button to the container
+    var container = document.getElementById('imageInputsContainer');
+    container.appendChild(newInput);
+    container.appendChild(removeButton);
+}
+
 
 
 
