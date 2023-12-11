@@ -8,7 +8,7 @@
 //     die();
 // }
 ?>
-        <meta charset="utf-8">
+<meta charset="utf-8">
 <!-- App favicon -->
 <link rel="shortcut icon" href="https://themesbrand.com/toner/html/assets/images/favicon.ico">
 
@@ -26,7 +26,7 @@
 <!-- Bootstrap Css -->
 <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <!-- Icons Css -->
-<link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <!-- App Css-->
 <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css">
 <!-- custom Css-->

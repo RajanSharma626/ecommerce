@@ -568,21 +568,7 @@ function topFunction() {
     document.body.scrollTop = 0, document.documentElement.scrollTop = 0
 }
 
-function chatBot() {
-    var e = document.getElementById("chatBot");
-    e && e.classList.remove("show")
-}
 
-function scrollToBottom(a) {
-    setTimeout(function() {
-        var e = document.getElementById(a).querySelector("#chat-conversation .simplebar-content-wrapper") ? document.getElementById(a).querySelector("#chat-conversation .simplebar-content-wrapper") : "",
-            t = document.getElementsByClassName("chat-conversation-list")[0] ? document.getElementById(a).getElementsByClassName("chat-conversation-list")[0].scrollHeight - window.innerHeight + 800 : 0;
-        t && e.scrollTo({
-            top: t,
-            behavior: "smooth"
-        })
-    }, 100)
-}
 
 function addImageInput() {
     // Create a new file input element
@@ -590,7 +576,7 @@ function addImageInput() {
     newInput.className = 'form-control';
     newInput.classList.add('mb-2');
     newInput.type = 'file';
-    newInput.name = 'img[]';
+    newInput.name = 'product_img[]';
     newInput.required = true;
 
     // Create a remove button
