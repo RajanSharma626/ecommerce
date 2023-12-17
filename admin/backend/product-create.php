@@ -10,8 +10,8 @@ $product_imgs = [];
 $stock = "";
 $price = "";
 $discountPrice = "";
-// $selectedColors = array();
-// $selectedSizes = array();
+$selectedColors = array();
+$selectedSizes = array();
 $shortDesc = "";
 $publish = "";
 
