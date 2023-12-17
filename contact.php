@@ -1,3 +1,6 @@
+<?php
+include('includes/conn.php');
+?>
 <!doctype html>
 <html lang="en">
 
@@ -16,17 +19,17 @@
     <!-- End header area -->
 
     <main class="main__content_wrapper">
-        <?php if(isset($_GET['FormSubmit']) && $_GET['FormSubmit'] == true ){ ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Thank You!</strong> we will reply by email as soon as possible.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php }elseif(isset($_GET['FormSubmit']) && $_GET['FormSubmit'] == false){ ?>
+        <?php if (isset($_GET['FormSubmit']) && $_GET['FormSubmit'] == true) { ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Thank You!</strong> we will reply by email as soon as possible.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php } elseif (isset($_GET['FormSubmit']) && $_GET['FormSubmit'] == false) { ?>
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Sorry!</strong> Something went wrong please try again.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <?php }?>
+                <strong>Sorry!</strong> Something went wrong please try again.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php } ?>
         <!-- Start contact section -->
         <section class="contact__section section--padding">
 
@@ -85,6 +88,13 @@
                                 Now</button>
                         </form>
                     </div>
+
+                    <?php
+
+                    $contactSql = mysqli_query($conn, "SELECT * FROM `contact_detail`");
+                    $contactDetail = mysqli_fetch_assoc($contactSql);
+
+                    ?>
                     <div class="contact__info border-radius-5">
                         <div class="contact__info--items">
                             <h3 class="contact__info--content__title text-white mb-15">Contact Us</h3>
@@ -98,16 +108,23 @@
                                     </svg>
                                 </div>
                                 <div class="contact__info--content">
-                                    <p class="contact__info--content__desc text-white">Change the design through a range
-                                        <br> <a href="tel:+01234-567890">+01234-567890</a> <a
-                                            href="tel:++01234-5688765">+01234-5688765</a>
+                                    <p class="contact__info--content__desc text-white">
+                                        <?php if ($contactDetail['phone_no'] != '') { ?>
+                                            <a href="tel:+91<?php echo $contactDetail['phone_no'] ?>">+91
+                                                <?php echo $contactDetail['phone_no'] ?>
+                                            </a><br>
+                                        <?php }
+                                        if ($contactDetail['office_no'] != '') ?>
+                                        <a href="tel:+91<?php echo $contactDetail['office_no'] ?>">+91
+                                            <?php echo $contactDetail['office_no'] ?>
+                                        </a>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="contact__info--items">
                             <h3 class="contact__info--content__title text-white mb-15">Email Address</h3>
-                            <div class="contact__info--items__inner d-flex">
+                            <div class="contact__info--items__inner d-flex align-items-center">
                                 <div class="contact__info--icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="31.57" height="31.13"
                                         viewBox="0 0 31.57 31.13">
@@ -118,7 +135,6 @@
                                 </div>
                                 <div class="contact__info--content">
                                     <p class="contact__info--content__desc text-white"> <a
-                                            href="mailto:info@example.com">info@example.com</a> <br> <a
                                             href="mailto:info@example.com">info@example.com</a></p>
                                 </div>
                             </div>
@@ -135,29 +151,32 @@
                                     </svg>
                                 </div>
                                 <div class="contact__info--content">
-                                    <p class="contact__info--content__desc text-white"> 123 Stree New York City ,
-                                        United States Of America
-                                        NY 750065.</p>
+                                    <p class="contact__info--content__desc text-white">
+                                        <?php echo $contactDetail['address'] ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                         <div class="contact__info--items">
                             <h3 class="contact__info--content__title text-white mb-15">Follow Us</h3>
                             <ul class="contact__info--social d-flex">
+
+                                <?php if ($contactDetail['facebook'] != '') { ?>
+                                    <li class="contact__info--social__list">
+                                        <a class="contact__info--social__icon" target="_blank"
+                                            href="<?php echo $contactDetail['facebook'] ?>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="7.667" height="16.524"
+                                                viewBox="0 0 7.667 16.524">
+                                                <path data-name="Path 237"
+                                                    d="M967.495,353.678h-2.3v8.253h-3.437v-8.253H960.13V350.77h1.624v-1.888a4.087,4.087,0,0,1,.264-1.492,2.9,2.9,0,0,1,1.039-1.379,3.626,3.626,0,0,1,2.153-.6l2.549.019v2.833h-1.851a.732.732,0,0,0-.472.151.8.8,0,0,0-.246.642v1.719H967.8Z"
+                                                    transform="translate(-960.13 -345.407)" fill="currentColor"></path>
+                                            </svg>
+                                            <span class="visually-hidden">Facebook</span>
+                                        </a>
+                                    </li>
+                                <?php }; if ($contactDetail['twitter'] != '') {?>
                                 <li class="contact__info--social__list">
-                                    <a class="contact__info--social__icon" target="_blank"
-                                        href="https://www.facebook.com/">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="7.667" height="16.524"
-                                            viewBox="0 0 7.667 16.524">
-                                            <path data-name="Path 237"
-                                                d="M967.495,353.678h-2.3v8.253h-3.437v-8.253H960.13V350.77h1.624v-1.888a4.087,4.087,0,0,1,.264-1.492,2.9,2.9,0,0,1,1.039-1.379,3.626,3.626,0,0,1,2.153-.6l2.549.019v2.833h-1.851a.732.732,0,0,0-.472.151.8.8,0,0,0-.246.642v1.719H967.8Z"
-                                                transform="translate(-960.13 -345.407)" fill="currentColor"></path>
-                                        </svg>
-                                        <span class="visually-hidden">Facebook</span>
-                                    </a>
-                                </li>
-                                <li class="contact__info--social__list">
-                                    <a class="contact__info--social__icon" target="_blank" href="https://twitter.com/">
+                                    <a class="contact__info--social__icon" target="_blank" href="<?php echo $contactDetail['twitter'] ?>">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16.489" height="13.384"
                                             viewBox="0 0 16.489 13.384">
                                             <path data-name="Path 303"
@@ -167,9 +186,10 @@
                                         <span class="visually-hidden">Twitter</span>
                                     </a>
                                 </li>
+                                <?php }; if ($contactDetail['instagram'] != '') { ?>
                                 <li class="contact__info--social__list">
                                     <a class="contact__info--social__icon" target="_blank"
-                                        href="https://www.instagram.com/">
+                                        href="<?php echo $contactDetail['instagram'] ?>">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16.497" height="16.492"
                                             viewBox="0 0 19.497 19.492">
                                             <path data-name="Icon awesome-instagram"
@@ -179,9 +199,10 @@
                                         <span class="visually-hidden">Instagram</span>
                                     </a>
                                 </li>
+                                <?php }; if ($contactDetail['youtube'] != '') { ?>
                                 <li class="contact__info--social__list">
                                     <a class="contact__info--social__icon" target="_blank"
-                                        href="https://www.youtube.com/">
+                                        href="<?php echo $contactDetail['youtube'] ?>">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16.49" height="11.582"
                                             viewBox="0 0 16.49 11.582">
                                             <path data-name="Path 321"
@@ -191,6 +212,7 @@
                                         <span class="visually-hidden">Youtube</span>
                                     </a>
                                 </li>
+                                <?php }?>
                             </ul>
                         </div>
                     </div>
@@ -200,11 +222,13 @@
         <!-- End contact section -->
 
         <!-- Start contact map area -->
+        <?php if($contactDetail['map'] != ''){ ?>
         <div class="contact__map--area section--padding pt-0">
             <iframe class="contact__map--iframe"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7887.465355142307!2d-0.13384360843222626!3d51.4876034467734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760532743b90e1%3A0x790260718555a20c!2sU.S.%20Embassy%2C%20London!5e0!3m2!1sen!2sbd!4v1632035375945!5m2!1sen!2sbd"
+                src="<?php echo $contactDetail['map'] ?>"
                 style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
+        <?php } ?>
         <!-- End contact map area -->
 
 
@@ -261,7 +285,7 @@
     ?>
     <!-- End footer section -->
 
-    
+
     <?php
     include('includes/foot.php');
     ?>

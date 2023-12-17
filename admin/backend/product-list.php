@@ -145,7 +145,7 @@ $query = mysqli_query($conn, $sql);
                                                 <td>
                                                     <div class="row align-items-center justify-content-center">
                                                         <div class="col-2">
-                                                            <img src="../assets/images/products/img-1.png" alt=""
+                                                            <img src="../assets/images/products/<?php echo $row['img']?>" alt=""
                                                                 class="img-fluid" width="50px" height="50px">
                                                         </div>
                                                         <div class="col-10">
